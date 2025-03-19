@@ -1,11 +1,11 @@
 # Simple ETL Pipeline Using AWS S3, Lambda, and RDS (MySQL)
 
-## 📌 **Project Overview**
+##  **Project Overview**
 This project demonstrates a simple **ETL (Extract, Transform, Load)** pipeline using AWS services. The pipeline automates the process of extracting a CSV file from Amazon S3, transforming the data using AWS Lambda, and loading it into an Amazon RDS (MySQL) database. It also includes error handling with Amazon SNS for notifications and secure management of credentials using AWS Secrets Manager and Systems Manager Parameter Store.
 
 ---
 
-## 🛠️ **Architecture Overview**
+## 🛠 **Architecture Overview**
 
 - **Data Source:** CSV file uploaded from a local machine to an S3 bucket using AWS CLI.
 - **Processing:** AWS Lambda function reads the CSV from S3, performs data validation, and loads the data into an Amazon RDS (MySQL) table.
@@ -16,7 +16,7 @@ This project demonstrates a simple **ETL (Extract, Transform, Load)** pipeline u
 
 ---
 
-## 🚀 **Technologies Used**
+##  **Technologies Used**
 - **AWS S3** for storing raw data
 - **AWS Lambda** for serverless processing
 - **Amazon RDS (MySQL)** for relational data storage
@@ -30,7 +30,7 @@ This project demonstrates a simple **ETL (Extract, Transform, Load)** pipeline u
 
 ---
 
-## 📥 **Prerequisites**
+##  **Prerequisites**
 
 Ensure you have the following tools and AWS resources configured:
 - AWS CLI installed and configured
@@ -44,7 +44,7 @@ Ensure you have the following tools and AWS resources configured:
 
 ---
 
-## 🛠️ **Step 1: Upload CSV File to S3**
+##  **Step 1: Upload CSV File to S3**
 1. Ensure your AWS CLI is configured.
 2. Run the following command to upload your CSV to S3:
 
@@ -54,31 +54,31 @@ aws s3 cp Salescsvfile.csv s3://bucketname/sales_raw/
 
 ---
 
-## 🧑‍💻 **Step 2: Create AWS Resources**
+##  **Step 2: Create AWS Resources**
 
-### ✅ **1. Create an RDS MySQL Instance:**
+###  **1. Create an RDS MySQL Instance:**
 - Go to **Amazon RDS** in the AWS Management Console.
 - Create a new MySQL database.
 - Note down the database endpoint, username, and password.
 
-### ✅ **2. Create a Secrets Manager Entry:**
+###  **2. Create a Secrets Manager Entry:**
 - Navigate to **AWS Secrets Manager**.
 - Create a new secret with database credentials.
 - Save the secret name (`dev/rds/database1`).
 
-### ✅ **3. Store Database Hostname in SSM:**
+###  **3. Store Database Hostname in SSM:**
 - Go to **AWS Systems Manager → Parameter Store**.
 - Create a new parameter named `dev/rds/hostname`.
 - Add your RDS endpoint as the value.
 
-### ✅ **4. Create an SNS Topic:**
+###  **4. Create an SNS Topic:**
 - Go to **Amazon SNS**.
 - Create a new topic named `dev_sales`.
 - Add your email address as a subscriber.
 
 ---
 
-## 📝 **Step 3: AWS Lambda Code**
+##  **Step 3: AWS Lambda Code**
 
 Here’s the core logic of the Lambda function:
 
@@ -88,13 +88,13 @@ Here’s the core logic of the Lambda function:
 4. **Error Handling:** Sends notifications using SNS on failures.
 
 ### **Environment Variables:**
-- `SECRET_NAME` = `dev/rds/database1`
+- `SECRET_NAME` = `dev/rds/database`
 - `SNS_TOPIC_NAME` = `dev_sales`
 - `S3_BUCKET_NAME` = `MyBucketName`
 - `S3_KEY` = `sales_raw/Salescsvfile.csv`
 - `SSM_PARAMETER_NAME` = `dev/rds/hostname`
 
-### **Lambda Handler Example:**
+### Lambda Handler Example:**
 ```python
 import pandas as pd
 import boto3
@@ -116,21 +116,21 @@ ssm_client = session.client("ssm")
 
 ---
 
-## 📊 **Step 4: Monitoring and Alerts**
+##  Step 4: Monitoring and Alerts**
 - Monitor Lambda function logs using **AWS CloudWatch**.
 - Check for SNS notifications in case of errors.
 - Ensure data accuracy using SQL queries in DBeaver.
 
 ---
 
-## 📦 **Step 5: Clean Up**
+##  Step 5: Clean Up**
 - Delete unused S3 objects to save storage costs.
 - Remove RDS instances if not needed.
 - Unsubscribe from SNS topics.
 
 ---
 
-## 📣 **Future Enhancements**
+##  Future Enhancements**
 - Add data quality checks in the Lambda function.
 - Implement incremental data loading.
 - Visualize data using AWS QuickSight.
