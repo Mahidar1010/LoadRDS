@@ -137,11 +137,11 @@ ssm_client = session.client("ssm")
 
 ---
 
-## 💬 **Contributing**
+##  **Contributing**
 Feel free to fork this repository, raise issues, or submit pull requests to improve the project.
 
 ---
 
-## 📧 **Contact**
-For any questions, feel free to reach out via GitHub or connect with me on [LinkedIn](https://linkedin.com/in/mahidar-reddy-putta).
+##  **Contact**
+For any questions, feel free to reach out via GitHub or connect with me on [LinkedIn](https://www.linkedin.com/in/mahidar-reddy-putta-8258b2203/).
 
