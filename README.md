@@ -1,4 +1,4 @@
-# Simple ETL Pipeline Using AWS S3, Lambda, and RDS (MySQL)
+# Simple ETL Pipeline Using AWS S3, Lambda, and RDS (MySQL) to process raw data and store into a RDS Table
 
 ##  **Project Overview**
 This project demonstrates a simple **ETL (Extract, Transform, Load)** pipeline using AWS services. The pipeline automates the process of extracting a CSV file from Amazon S3, transforming the data using AWS Lambda, and loading it into an Amazon RDS (MySQL) database. It also includes error handling with Amazon SNS for notifications and secure management of credentials using AWS Secrets Manager and Systems Manager Parameter Store.
